@@ -3,14 +3,16 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
+const OUTPUT_DIR = "dist";
+
 function assetsPath(_path) {
   const ASSETS_DIR = "static";
   return path.posix.join(ASSETS_DIR, _path);
 }
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === "development" ? "./" : "/", // vueConf.baseUrl, // 根域上下文目录
-  // outputDir: outputDir, // 构建输出目录
+  publicPath: process.env.NODE_ENV === "local" ? "/" : "./", // vueConf.baseUrl, // 根域上下文目录
+  outputDir: OUTPUT_DIR, // 构建输出目录
   assetsDir: "static", // 静态资源目录 (js, css, img, fonts)
   lintOnSave: true, // 是否开启eslint保存检测，有效值：ture | false | 'error'
   runtimeCompiler: true, // 运行时版本是否需要编译
