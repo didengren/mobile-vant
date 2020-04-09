@@ -3,7 +3,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-const OUTPUT_DIR = "dist";
+const OUTPUT_DIR =
+  process.env.NODE_ENV === "debug"
+    ? "release/test"
+    : process.env.NODE_ENV === "production"
+    ? "release/prod"
+    : `release/${process.env.NODE_ENV}`;
 
 function assetsPath(_path) {
   const ASSETS_DIR = "static";
